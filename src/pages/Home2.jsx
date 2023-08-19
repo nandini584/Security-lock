@@ -37,8 +37,12 @@ const Home2 = () => {
       <div className='flex flex-row items-center justify-center mb-6'>
       <form onSubmit={handleSubmit}>
         <label>
-          Password:
-          <input type="password" value={password} onChange={handlePasswordChange} className='text-purple-950 border-2 bg-white border-purple-800 rounded-lg text-base font-medium opacity-80 w-[500px] pl-2 py-2'/>
+          Which website is this password for?
+          <input type="text" placeholder="Website" className='text-purple-950 border-2 bg-white border-purple-800 rounded-lg text-base font-medium opacity-80 w-[500px] pl-2 py-2'/>
+        </label>
+        <label>
+            What is your password?
+          <input type="password" placeholder="Enter your password" value={password} onChange={handlePasswordChange} className='text-purple-950 border-2 bg-white border-purple-800 rounded-lg text-base font-medium opacity-80 w-[500px] pl-2 py-2'/>
         </label>
         <button type="submit" className='bg-purple-800 mt-5 text-white font-regular text-as py-2 px-8 border-2 hover:border-2 hover:border-purple-700 font-bold border-purple-400 rounded-full hover:bg-white hover:text-purple-800'>Submit</button>
       </form>
