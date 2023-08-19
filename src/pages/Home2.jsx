@@ -5,51 +5,37 @@ import React from 'react';
 
 const Home2 = () => {
   const [password, setPassword] = useState('');
+  const [website, setWebsite] = useState('');
   const handleSubmit = async (event) => {
     event.preventDefault();
     const length = 32;
     const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
-    let newPassword = ''; // Change 'password' to 'newPassword'
+    let newPassword = ''; 
+    let newWebsite = website;
     for (let i = 1; i <= length; i++) {
       const random = Math.floor(Math.random() * characters.length);
       newPassword += characters[random];
     }
     setPassword(newPassword);
+    setWebsite(newWebsite);
   
     try {
       const docRef = await addDoc(collection(db, "password"), {
-        password: newPassword, // Use 'newPassword' instead of 'password'
+        password: newPassword, 
+        website: newWebsite
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   };
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     const length = 32;
-//         const characters='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*'
-//         let password=''
-//         for (let i=1; i<=length; i++){
-//             const random= Math.floor(Math.random()*characters.length)
-//             password+=characters[random];
-//         }    
-//     setPassword(password);
-
-//   try {
-//     const docRef = await addDoc(collection(db, "password"), {
-//       password: password,    
-//     });
-//     console.log("Document written with ID: ", docRef.id);
-//   } catch (e) {
-//     console.error("Error adding document: ", e);
-//   }
-// }
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
-
+const handleWebsiteChange = (event) => {
+    setWebsite(event.target.value);
+  }
   return (
     <div className='flex flex-col items-center justify-center bg-purple-100 p-20 w-2/5 rounded-lg'>
       <h2>Enter Password</h2>
@@ -57,7 +43,7 @@ const Home2 = () => {
       <form onSubmit={handleSubmit}>
         <label>
           <b>Which website is this password for?</b> 
-          <input type="text" placeholder="Website" className='text-purple-950 border-2 mb-5 mt-2 bg-white border-purple-800 rounded-lg text-base font-medium opacity-80 w-[500px] pl-2 py-2'/>
+          <input type="text" placeholder="Website" value={website} onChange={handleWebsiteChange} className='text-purple-950 border-2 mb-5 mt-2 bg-white border-purple-800 rounded-lg text-base font-medium opacity-80 w-[500px] pl-2 py-2'/>
         </label>
         <label>
            <b>What is your password?</b> 
