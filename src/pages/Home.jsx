@@ -1,13 +1,32 @@
 import React from 'react'
 import { collection, addDoc } from "firebase/firestore";
 import {db} from '../../firebase';
+import { useState } from 'react';
+ 
+   const [pswds, setPswds] = useState([]);
+ 
+    const fetchPost = async () => {
+       
+        await getDocs(collection(db, "pswds"))
+            .then((querySnapshot)=>{               
+                const newData = querySnapshot.docs
+                    .map((doc) => ({...doc.data(), id:doc.id }));
+                setTodos(newData);                
+                console.log(pswds, newData);
+            })
+       
+    }
+   
+    useEffect(()=>{
+        fetchPost();
+    }, [])
 const Home = () => {
     const addpswd = async (e) => {
         e.preventDefault();  
        
         try {
-            const docRef = await addDoc(collection(db, "todos"), {
-              todo: todo,    
+            const docRef = await addDoc(collection(db, "pswd"), {
+              pswd:pswd,    
             });
             console.log("Document written with ID: ", docRef.id);
           } catch (e) {
@@ -19,8 +38,21 @@ const Home = () => {
     <div>
         <h1 className='text-4xl'>Input field</h1>
         <form action="">
-        <input type="text" className='outline '  placeholder="What do you have to do today?" onChange={(e)=>setTodo(e.target.value)}/>
+        <input type="text" className='outline'  placeholder="What do you have to do today?" onChange={(e)=>setTodo(e.target.value)}/>
+        <button type="submit" className="btn" onClick={addpswd}>
+                            Submit
+                        </button>
+    
         </form>
+        <div>
+        {
+        pswds?.map((pswd,i)=>(
+            <p key={i}>
+                {pswd.pswd}
+            </p>
+        ))
+    }
+        </div>
 
     </div>
   )
