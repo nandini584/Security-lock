@@ -1,8 +1,3 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Secure-dev
+Often times we tend to forget our passowrds or keep the save for every website but its not safe at all, you can get hacked anytime for that I made, Secure-dev
+The Secure Dev project is a web application that allows users to securely input and store passwords using modern web technologies such as ReactJS, Tailwind CSS, and Firestore.
